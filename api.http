@@ -1,0 +1,60 @@
+GET http://localhost:3000/events
+
+###
+# @name createEvent
+POST http://localhost:3000/events
+Content-Type: application/json
+
+{
+    "name": "New Event",
+    "description": "Descricao",
+    "date": "2024-12-25T00:00:00",
+    "price": 100
+}
+
+###
+@eventId = {{ createEvent.response.body.id }}
+
+###
+GET http://localhost:3000/events/{{eventId}}
+
+###
+PATCH http://localhost:3000/events/{{eventId}}
+Content-Type: application/json
+
+{
+    "name": "New Event",
+    "description": "Descricao",
+    "date": "2024-12-25T00:00:00",
+    "price": 100
+}
+
+###
+DELETE http://localhost:3000/events/{{eventId}}
+
+
+
+###
+GET http://localhost:3000/events/{{eventId}}/spots
+
+###
+POST http://localhost:3000/events/{{eventId}}/spots
+Content-Type: application/json
+
+{
+    "name": "A2"
+}
+
+###
+GET http://localhost:3000/events/{{eventId}}/spots/d99dafd8-c4b7-4c43-8031-1875658b416e
+
+###
+PATCH http://localhost:3000/events/{{eventId}}/spots/d99dafd8-c4b7-4c43-8031-1875658b416e
+Content-Type: application/json
+
+{
+    "name": "A4"
+}
+
+###
+DELETE http://localhost:3000/events/{{eventId}}/spots/d99dafd8-c4b7-4c43-8031-1875658b416e
